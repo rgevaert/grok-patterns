@@ -1,0 +1,13 @@
+# Syslog stuff
+COMPONENT ([\w._\/%-]+)
+COMPID amavis(?:\[%{POSINT:pid}\])?
+AMAVISDID %{POSINT}-%{POSINT}
+QUEUEID (?:[A-F0-9]+|NOQUEUE)
+EMAILADDRESSPART [a-zA-Z0-9_.+-=:]+
+EMAILADDRESS %{EMAILADDRESSPART:local}@%{EMAILADDRESSPART:remote}
+# Doesn't work:
+#TESTSSCORES (%{TESTSCORE},)?%{TESTSCORE}
+#TESTSCORE %{WORD:test}=%{NUMBER}
+USER_AGENT User-Agent|X-Mailer
+RECIPIENTS <%{EMAILADDRESS:recipient}>(,<%{GREEDYDATA:recipientlist}>)?
+AMAVISDNEW %{SYSLOGTIMESTAMP:timestamp} %{SYSLOGHOST:hostname} %{COMPID}: \(%{AMAVISDID:amavisdid}\) %{WORD:action} %{GREEDYDATA:ccat}, %{GREEDYDATA:policybank} \[%{IP:relayip}\] \[%{IP:originip}\] <%{EMAILADDRESS:from}> -> %{RECIPIENTS:recipients}, Message-ID: <%{EMAILADDRESS:messageid}>,( mail_id: %{DATA:mail_id},)? Hits: %{NUMBER:hits:float}, size: %{NUMBER:size:int},( queued_as: %{QUEUEID:qid},)? Subject: "%{DATA:subject}", From: %{DATA:from},( %{USER_AGENT}: %{DATA:user_agent},)? Tests: \[%{DATA:TESTS}\],( shortcircuit=%{WORD:shortcircuit},)?( autolearn=%{WORD:autolearn},)? %{POSINT:elapsedtime} ms
