@@ -1,0 +1,9 @@
+HELO (?:\[%{IP:helo}\]|%{HOST:helo})
+
+MILTERCONNECT %{QUEUEID:qid}: milter-reject: CONNECT from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; proto=%{WORD:proto}
+MILTERUNKNOWN %{QUEUEID:qid}: milter-reject: UNKNOWN from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; proto=%{WORD:proto}
+MILTEREHLO %{QUEUEID:qid}: milter-reject: EHLO from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; proto=%{WORD:proto} helo=<%{HELO}>
+MILTERMAIL %{QUEUEID:qid}: milter-reject: MAIL from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; from=<%{EMAILADDRESS:from}> proto=%{WORD:proto} helo=<%{HELO}>
+MILTERHELO %{QUEUEID:qid}: milter-reject: HELO from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; proto=%{WORD:proto} helo=<%{HELO}>
+MILTERRCPT %{QUEUEID:qid}: milter-reject: RCPT from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; from=<%{EMAILADDRESS:from}> to=<%{EMAILADDRESS:to}> proto=%{WORD:proto} helo=<%{HELO}>
+MILTERENDOFMESSAGE %{QUEUEID:qid}: milter-reject: END-OF-MESSAGE from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; from=<%{EMAILADDRESS:from}> to=<%{EMAILADDRESS:to}> proto=%{WORD:proto} helo=<%{HELO}>
