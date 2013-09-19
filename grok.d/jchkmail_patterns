@@ -1,4 +1,4 @@
-HELO (?:\[%{IP:helo}\]|%{HOST:helo})
+HELO (?:\[%{IP:helo}\]|%{HOST:helo}|%{DATA:helo})
 
 MILTERCONNECT %{QUEUEID:qid}: milter-reject: CONNECT from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; proto=%{WORD:proto}
 MILTERUNKNOWN %{QUEUEID:qid}: milter-reject: UNKNOWN from %{RELAY:relay}: %{GREEDYDATA:milter_reason}; proto=%{WORD:proto}

@@ -1,0 +1,6 @@
+PERDITION %{PERDITIONCLOSING}|%{PERDITIONCONNECT}|%{PERDITIONAUTH}|%{PERDITIONFATAL}|%{PERDITIONEXIT}
+PERDITIONCONNECT Connect: (%{GREEDYDATA:source}->%{GREEDYDATA:destination})? inetd_pid=%{POSINT}
+PERDITIONCLOSING Closing session: %{GREEDYDATA:source}:%{POSINT}->%{GREEDYDATA:destination}:%{POSINT} authorisation_id=%{WORD:authorisation_id} authentication_id="%{DATA:authentication_id}" received=%{POSINT:bytes_received:int} sent=%{POSINT:bytes_sent:int}
+PERDITIONAUTH Auth: %{GREEDYDATA:source}:%{POSINT}->%{GREEDYDATA:destination}:%{POSINT} client-secure=%{WORD:client_secure} authorisation_id=%{WORD:authorisation_id} authentication_id="%{DATA:authentication_id}" server="%{GREEDYDATA:server}:%{WORD:protocol}" protocol=%{WORD:protocol} server-secure=%{WORD:server_secure} status="%{DATA:status}"
+PERDITIONFATAL Fatal (E|e)rror .* client?( %{GREEDYDATA:source}:%{POSINT}->%{GREEDYDATA:destination}:%{POSINT}:%{GREEDYDATA:error})?
+PERDITIONEXIT Exiting %{GREEDYDATA}
