@@ -180,7 +180,6 @@ describe "the extended amavis grok pattern" do
       @match.should have_logstash_field("ccat").with_value("BAD-HEADER")
     end
 
-
   end
 
 end
