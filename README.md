@@ -1,5 +1,8 @@
 ## Tests
 
+[![Build
+Status](https://travis-ci.org/rgevaert/grok-patterns.svg?branch=master)](http://travis-ci.org/rgevaert/grok-patterns)
+
 As well as being a set of patterns for people to use in logstash, this
 repo also contains test suites for those patterns and a rspec matcher
 that might be useful to anyone else who wants to write and test grok
