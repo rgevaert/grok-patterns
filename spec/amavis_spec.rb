@@ -136,7 +136,7 @@ describe "the extended amavis grok pattern" do
 
   describe "with a spammy amavis log line" do
     before do
-      log_line = 'Mar 15 15:16:24 mcheck4 amavis[18588]: (18588-47) Passed SPAMMY, DEFAULT [93.174.66.65] [93.174.66.65] <a6g6h@a6g6h.r39.it> -> <bart.vanderstraeten@ugent.be>, Message-ID: <201303151516230534@311470.623.2153.16768>, mail_id: 9I671lxS3H2g, Hits: 10.632, size: 23466, queued_as: D1BDE9E332, Subject: "=?UTF-8?Q?profiteer_nu_van_de_daling_van_onze_tarieven?=", From: "=?UTF-8?Q?Auxifina_Kredieten_door_webvoordelen?="_<jan.veyt@webvoordelen.com>, Tests: [CMAE_1=10,DKIM_SIGNED=0.1,DKIM_VALID=-0.1,HS_INDEX_PARAM=0.023,HTML_IMAGE_RATIO_04=0.61,HTML_MESSAGE=0.001,RCVD_IN_DNSWL_NONE=-0.0001,SPF_HELO_PASS=-0.001,SPF_PASS=-0.001], shortcircuit=no, autolearn=disabled, 681 ms'
+      log_line = 'Mar 15 15:16:24 mcheck4 amavis[18588]: (18588-47) Passed SPAMMY, DEFAULT [93.174.66.65] [93.174.66.65] <a6g6h@a6g6h.r39.it> -> <bart.vanderstraeten@ugent.be>, Message-ID: <201303151516230534@311470.623.2153.16768>, mail_id: 9I671lxS3H2g, Hits: 10.632, size: 23466, queued_as: D1BDE9E332, Subject: "=?UTF-8?Q?profiteer_nu_van_de_daling_van_onze_tarieven?=", From: "=?UTF-8?Q?Auxifina_Kredieten_door_webvoordelen?="_<jan.veyt@webvoordelen.com>, Tests: [CMAE_1=10,DKIM_SIGNED=0.1,DKIM_VALID=-0.1,HS_INDEX_PARAM=0.023,HTML_IMAGE_RATIO_04=0.61,HTML_MESSAGE=0.001,RCVD_IN_DNSWL_NONE=-0.0001,SPF_HELO_PASS=-0.001,SPF_PASS=-0.001], shortcircuit=yes, autolearn=disabled, 681 ms'
       @match = @grok.match(log_line)
     end
 
@@ -148,6 +148,65 @@ describe "the extended amavis grok pattern" do
       @match.should have_logstash_field("ccat").with_value("SPAMMY")
     end
 
+    it "should have the correct policy bank value" do
+      @match.should have_logstash_field("policybank").with_value("DEFAULT")
+    end
+
+    it "should have the correct relayip value" do
+      @match.should have_logstash_field("relayip").with_value("93.174.66.65")
+    end
+
+    it "should have the correct originip value" do
+      @match.should have_logstash_field("originip").with_value("93.174.66.65")
+    end
+
+    it "should have the correct from value" do
+      @match.should have_logstash_field("from").with_value("a6g6h@a6g6h.r39.it")
+    end
+
+    it "should have the correct recipients value" do
+      @match.should have_logstash_field("recipients").with_value("<bart.vanderstraeten@ugent.be>")
+    end
+
+    it "should have the correct messageid value" do
+      @match.should have_logstash_field("messageid").with_value("201303151516230534@311470.623.2153.16768")
+    end
+
+    it "should have the correct mail_id value" do
+      @match.should have_logstash_field("mail_id").with_value("9I671lxS3H2g")
+    end
+
+    it "should have the correct hits value" do
+      @match.should have_logstash_field("hits:float").with_value("10.632")
+    end
+
+    it "should have the correct size value" do
+      @match.should have_logstash_field("size:int").with_value("23466")
+    end
+
+    it "should have the correct qid value" do
+      @match.should have_logstash_field("qid").with_value("D1BDE9E332")
+    end
+
+    it "should have the correct subject value" do
+      @match.should have_logstash_field("subject").with_value("=?UTF-8?Q?profiteer_nu_van_de_daling_van_onze_tarieven?=")
+    end
+
+    it "should have the correct tests value" do
+      @match.should have_logstash_field("TESTS").with_value("CMAE_1=10,DKIM_SIGNED=0.1,DKIM_VALID=-0.1,HS_INDEX_PARAM=0.023,HTML_IMAGE_RATIO_04=0.61,HTML_MESSAGE=0.001,RCVD_IN_DNSWL_NONE=-0.0001,SPF_HELO_PASS=-0.001,SPF_PASS=-0.001")
+    end
+
+    it "should have the correct shortcircuit value" do
+      @match.should have_logstash_field("shortcircuit").with_value("yes")
+    end
+
+    it "should have the correct autolearn value" do
+      @match.should have_logstash_field("autolearn").with_value("disabled")
+    end
+
+    it "should have the correct elapsedtime" do
+      @match.should have_logstash_field("elapsedtime").with_value("681")
+    end
   end
 
   describe "with a blocked amavis log line" do
