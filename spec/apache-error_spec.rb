@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "the extended amavis grok pattern" do
+describe "the extended apache error log grok pattern" do
 
   before do
     @grok = Grok.new
