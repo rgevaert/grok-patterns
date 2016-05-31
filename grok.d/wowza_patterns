@@ -1,0 +1,7 @@
+WOWZENTRY [^\t]+
+WOWZIP (?:%{IP}|-)
+WOWZNONNEGINT (?:%{NONNEGINT}|-)
+WOWZNUMBER (?:%{NUMBER}|-)
+WOWZPATH (?:%{PATH}|-)
+WOWZDATE %{YEAR}-%{MONTHNUM2}-%{MONTHDAY}
+WOWZAACCESSLOG %{WOWZDATE:date}\t%{TIME:time}\t%{WOWZENTRY:tz}\t%{WOWZENTRY:xEvent}\t%{WORD:xCategory}\t%{LOGLEVEL:xSeverity}\t%{WOWZNONNEGINT:xStatus}\t%{WOWZENTRY:xCtx}\t%{WOWZENTRY:xComment}\t%{WOWZENTRY:xVhost}\t%{WOWZENTRY:xApp}\t%{WOWZENTRY:xAppinst}\t%{NUMBER:xDuration}\t%{WOWZENTRY:sIp}\t%{WOWZNONNEGINT:sPort}\t%{WOWZENTRY:sUri}\t%{WOWZIP:cIp}\t%{WOWZENTRY:cProto}\t%{WOWZENTRY:cReferrer}\t%{WOWZENTRY:cUserAgent}\t%{WOWZENTRY:cClientId}\t%{WOWZNONNEGINT:csBytes}\t%{WOWZNONNEGINT:scBytes}\t%{WOWZENTRY:xStreamId}\t%{WOWZNONNEGINT:xSpos}\t%{WOWZNONNEGINT:csStreamBytes}\t%{WOWZNONNEGINT:scStreamBytes}\t%{WOWZENTRY:xSname}\t%{WOWZENTRY:xSnameQuery}\t%{WOWZPATH:xFileName}\t%{WOWZENTRY:xFileExt}\t%{WOWZNONNEGINT:xFileSize}\t%{WOWZNUMBER:xFileLength}\t%{WOWZENTRY:xSuri}\t%{WOWZENTRY:xSuriStem}\t%{WOWZENTRY:xSuriQuery}\t%{WOWZENTRY:csUriStem}\t%{WOWZENTRY:csUriQuery}
