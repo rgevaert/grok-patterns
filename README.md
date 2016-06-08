@@ -1,7 +1,9 @@
-## Tests
+# Tests
 
 [![Build
 Status](https://travis-ci.org/rgevaert/grok-patterns.svg?branch=master)](http://travis-ci.org/rgevaert/grok-patterns)
+
+## Grok Tests
 
 As well as being a set of patterns for people to use in logstash, this
 repo also contains test suites for those patterns and a rspec matcher
@@ -10,6 +12,12 @@ patterns. You can run the test suite with:
 
     bundle install
     bundle exec rake
+
+## Logstash tests
+
+Currently manually and WIP
+
+Assumes logstash is in your path.
 
 ## Contributing
 
