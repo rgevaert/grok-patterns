@@ -40,7 +40,7 @@ describe "the wowza access/stats log grok pattern" do
     end
 
     it "should have the correct xStatus value" do
-      @match.should have_logstash_field("xStatus").with_value("200")
+      @match.should have_logstash_field("xStatus:integer").with_value("200")
     end
 
     it "should have the correct xCtx value" do
@@ -64,7 +64,7 @@ describe "the wowza access/stats log grok pattern" do
     end
 
     it "should have the correct xDuration value" do
-      @match.should have_logstash_field("xDuration").with_value("0.001")
+      @match.should have_logstash_field("xDuration:float").with_value("0.001")
     end
 
     it "should have the correct sIp value" do
@@ -72,7 +72,7 @@ describe "the wowza access/stats log grok pattern" do
     end
 
     it "should have the correct sPort value" do
-      @match.should have_logstash_field("sPort").with_value("1935")
+      @match.should have_logstash_field("sPort:integer").with_value("1935")
     end
 
     it "should have the correct sUri value" do
@@ -100,11 +100,11 @@ describe "the wowza access/stats log grok pattern" do
     end
 
     it "should have the correct csBytes value" do
-      @match.should have_logstash_field("csBytes").with_value("3431")
+      @match.should have_logstash_field("csBytes:integer").with_value("3431")
     end
 
     it "should have the correct scBytes value" do
-      @match.should have_logstash_field("scBytes").with_value("3073")
+      @match.should have_logstash_field("scBytes:integer").with_value("3073")
     end
 
     it "should have the correct xStreamId value" do
@@ -112,15 +112,15 @@ describe "the wowza access/stats log grok pattern" do
     end
 
     it "should have the correct xSpos value" do
-      @match.should have_logstash_field("xSpos").with_value("-")
+      @match.should have_logstash_field("xSpos:float").with_value("-")
     end
 
     it "should have the correct csStreamBytes value" do
-      @match.should have_logstash_field("csStreamBytes").with_value("-")
+      @match.should have_logstash_field("csStreamBytes:integer").with_value("-")
     end
 
     it "should have the correct scStreamBytes value" do
-      @match.should have_logstash_field("scStreamBytes").with_value("-")
+      @match.should have_logstash_field("scStreamBytes:integer").with_value("-")
     end
 
     it "should have the correct xSname value" do
@@ -140,11 +140,11 @@ describe "the wowza access/stats log grok pattern" do
     end
 
     it "should have the correct xFileSize value" do
-      @match.should have_logstash_field("xFileSize").with_value("-")
+      @match.should have_logstash_field("xFileSize:integer").with_value("-")
     end
 
     it "should have the correct xFileLength value" do
-      @match.should have_logstash_field("xFileLength").with_value("-")
+      @match.should have_logstash_field("xFileLength:float").with_value("-")
     end
 
     it "should have the correct xSuri value" do
